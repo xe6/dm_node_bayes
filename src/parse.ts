@@ -2,10 +2,14 @@ import { ProbabilityFinder } from './classes/ProbabilityFinder.class';
 import { Categories } from './enums/Categories.enum';
 
 const main = async () => {
-    const str = 'Go free fine just eat slice';
+    const inputStr: string = process.argv[2];
+    if (!inputStr) {
+       console.error('Please input a string as a first param!\nExample: node parse.js string');
+       process.exit(1);
+    }
     const probabilities = await Promise.all([
-        ProbabilityFinder.execute(str, Categories.HAM),
-        ProbabilityFinder.execute(str, Categories.SPAM),
+        ProbabilityFinder.execute(inputStr.toLowerCase(), Categories.HAM),
+        ProbabilityFinder.execute(inputStr.toLowerCase(), Categories.SPAM),
     ]);
 
     const [hamP, spamP] = probabilities
@@ -18,5 +22,4 @@ const main = async () => {
 main().then(res => {
     console.log(`Ham P: ${res.hamP}\nSpam P: ${res.spamP}`);  
     process.exit(0);
-})
-
+}).catch(err => console.error(err));
