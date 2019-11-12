@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "lodash": "^4.17.15",
+    "request": "^2.88.0"
+  },
+  "scripts": {
+    "compile": "tsc index.ts && mv index.js ./dist/"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.14",
+    "@types/lodash": "^4.14.146",
+    "@types/node": "^12.12.7"
+  }
+}
